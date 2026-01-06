@@ -3,15 +3,15 @@
 ========= */
 
 :root {
-  --primary: #FF0000; /* Bright red */
-  --secondary: #00FF00; /* Neon green */
-  --accent: #0000FF; /* Bright blue */
-  --background: #FFFF00; /* Yellow background */
-  --text: #FF00FF; /* Magenta text */
-  --muted: #00FFFF; /* Cyan for secondary text */
-  --border: #000000; /* Black borders */
-  --card-bg: #FFA500; /* Orange for cards */
-  --tag-bg: #800080; /* Purple for tags */
+  --bg: #01010e;
+  --card: #df269b;
+  --text: #3abf3c;
+  --muted: #b9c2e2;
+  --accent: #100612;
+  --border: rgba(165, 61, 61, 0.1);
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --radius: 17px;
+  --max: 1050px;
 }
 /* Typography and Spacing Improvements */
 html {
