@@ -3,16 +3,17 @@
 ========= */
 
 :root {
-  --bg: #01010e;
-  --card: #df269b;
-  --text: #3abf3c;
-  --muted: #b9c2e2;
-  --accent: #061209;
-  --border: rgba(24, 121, 31, 0.1);
+  --bg: #0f172a;        /* dark navy background */
+  --card: #111827;      /* card background */
+  --text: #f9fafb;      /* main text (almost white) */
+  --muted: #9ca3af;     /* secondary text */
+  --accent: #22c55e;    /* green accent (buttons, links) */
+  --border: rgba(255, 255, 255, 0.08);
   --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --radius: 17px;
+  --radius: 16px;
   --max: 1050px;
 }
+
 /* Typography and Spacing Improvements */
 html {
   font-size: 18px; /* Set a readable base font size */
