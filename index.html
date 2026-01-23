@@ -3,20 +3,535 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Salman Fadal| Portfolio</title>
+    <title>Salman Fadal | Portfolio</title>
     <meta
       name="description"
       content="Personal portfolio website: projects, skills, and contact."
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #1a202c;
+        --primary-dark: #0f1419;
+        --accent: #2d3748;
+        --bg-light: #f7fafc;
+        --bg-white: #ffffff;
+        --text-dark: #1a202c;
+        --text-muted: #4a5568;
+        --border: #e2e8f0;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --highlight: #3182ce;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background: var(--bg-light);
+        scroll-behavior: smooth;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Header & Navigation */
+      .site-header {
+        background: var(--bg-white);
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        animation: slideDown 0.5s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .nav-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 20px;
+        transition: transform 0.3s;
+      }
+
+      .brand:hover {
+        transform: scale(1.05);
+      }
+
+      .brand-mark {
+        font-size: 24px;
+      }
+
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--text-dark);
+      }
+
+      .site-nav {
+        display: flex;
+        gap: 32px;
+      }
+
+      .site-nav a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+
+      .site-nav a:hover {
+        background: var(--bg-light);
+        color: #3182ce;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        color: white;
+        padding: 120px 0;
+        animation: fadeIn 0.8s;
+        text-align: center;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-grid {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .accent {
+        color: #63b3ed;
+      }
+
+      .subtitle {
+        font-size: 20px;
+        margin-bottom: 32px;
+        opacity: 0.95;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 14px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+        border: 2px solid transparent;
+      }
+
+      .btn.primary {
+        background: #3182ce;
+        color: white;
+      }
+
+      .btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(49, 130, 206, 0.4);
+        background: #2c5282;
+      }
+
+      .btn:not(.primary) {
+        border: 2px solid white;
+        color: white;
+      }
+
+      .btn:not(.primary):hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      .btn.small {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      .btn.ghost {
+        background: transparent;
+        border: 2px solid #3182ce;
+        color: #3182ce;
+      }
+
+      .btn.ghost:hover {
+        background: #3182ce;
+        color: white;
+      }
+
+      .hero-links {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-links a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.9;
+        transition: opacity 0.3s;
+      }
+
+      .hero-links a:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+
+      .dot {
+        opacity: 0.5;
+      }
+
+      /* Cards */
+      .card {
+        background: var(--bg-white);
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s;
+        height: 100%;
+      }
+
+      .card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+      }
+
+      .card-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: var(--text-dark);
+      }
+
+      .checklist {
+        list-style: none;
+        margin: 16px 0;
+      }
+
+      .checklist li {
+        padding: 10px 0;
+        padding-left: 28px;
+        position: relative;
+      }
+
+      .checklist li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #3182ce;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .note {
+        background: var(--bg-light);
+        padding: 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-top: 16px;
+        border-left: 4px solid #3182ce;
+      }
+
+      /* Sections */
+      .section {
+        padding: 80px 0;
+      }
+
+      .section-head {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-head h2 {
+        font-size: 40px;
+        font-weight: 800;
+        margin-bottom: 12px;
+        color: var(--text-dark);
+      }
+
+      .muted {
+        color: var(--text-muted);
+        font-size: 16px;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+
+      .one-col {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .bullets {
+        list-style: none;
+        margin: 16px 0;
+      }
+
+      .bullets li {
+        padding: 8px 0;
+        padding-left: 24px;
+        position: relative;
+      }
+
+      .bullets li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #3182ce;
+        font-weight: bold;
+      }
+
+      .callout {
+        background: linear-gradient(135deg, #2c5282 0%, #2d3748 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 20px;
+      }
+
+      /* Projects */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 32px;
+      }
+
+      .project {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--text-dark);
+      }
+
+      .project p {
+        margin-bottom: 16px;
+        flex-grow: 1;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .tag {
+        background: #e6f2ff;
+        color: #2c5282;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .project-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      /* Skills */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+      }
+
+      .skills-grid h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: var(--text-dark);
+      }
+
+      .pill-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .pill-list li {
+        background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      /* Contact */
+      .contact-line {
+        padding: 12px 0;
+        font-size: 16px;
+      }
+
+      .contact-line a {
+        color: #3182ce;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-line a:hover {
+        text-decoration: underline;
+        color: #2c5282;
+      }
+
+      /* Hex Section */
+      .hex-section {
+        padding: 60px 24px;
+        background: var(--bg-white);
+      }
+
+      .hex-section .card {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .card-img {
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 12px;
+      }
+
+      /* Footer */
+      .site-footer {
+        background: var(--text-dark);
+        color: white;
+        padding: 40px 0;
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .footer-row .muted {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .footer-row a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-row a:hover {
+        color: white;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .site-nav {
+          display: none;
+        }
+
+        .section-head h2 {
+          font-size: 32px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .btn {
+          text-align: center;
+        }
+      }
+    </style>
   </head>
 
   <body>
     <!-- ===== Header / Nav ===== -->
-
     <header class="site-header">
       <div class="container nav-row">
-        <a class="brand" href="#top" aria-label="Go to top">
+        <a class="brand" href="https://github.com/ShotoSal" target="_blank" rel="noreferrer" aria-label="Go to GitHub">
           <span class="brand-mark">◆</span>
           <span class="brand-text">Salman Fadal</span>
         </a>
@@ -38,66 +553,45 @@
     <main id="top">
       <!-- ===== Hero ===== -->
       <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <!-- TODO (students): Replace with your name -->
-            <h1>Hi, I’m <span class="accent">Salman Fadal</span>.</h1>
+        <div class="container">
+          <h1>Hi, I'm <span class="accent">Salman Fadal</span>.</h1>
 
-            <!-- TODO (students): Replace with your title/tagline -->
-            <p class="subtitle">
-              Computer Science student building practical projects with Python, Git,
-              and AI-assisted coding.
-            </p>
+          <p class="subtitle">
+            Computer Science student building practical projects with Python, Git,
+            and AI-assisted coding.
+          </p>
 
-            <div class="hero-actions">
-              <a class="btn primary" href="#projects">View Projects</a>
-              <a class="btn" href="#contact">Contact</a>
-            </div>
-
-            <div class="hero-links">
-              <!-- TODO (students): Update your links -->
-              <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-              <span class="dot">•</span>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-              <span class="dot">•</span>
-              <a href="#" target="_blank" rel="noreferrer">Resume (PDF)</a>
-            </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="https://github.com/ShotoSal" target="_blank" rel="noreferrer">View Projects</a>
           </div>
 
-          <div class="hero-card">
-            <div class="card">
-              <h2 class="card-title">Quick Snapshot</h2>
-              <ul class="checklist">
-                <!-- TODO (students): Update these bullets -->
-                <li>Interested in: Software Engineering / Cybersecurity / Data</li>
-                <li>Currently learning: Python + GitHub Copilot</li>
-                <li>Goal: Internship-ready portfolio</li>
-              </ul>
-              <p class="note">
-                Tip: Make small improvements and commit often. Your Git history is part
-                of your portfolio.
-              </p>
-            </div>
+          <div class="hero-links">
+            <a href="https://github.com/ShotoSal" target="_blank" rel="noreferrer">GitHub</a>
+            <span class="dot">•</span>
+            <a href="https://www.linkedin.com/in/salman-fadal-88308522b/" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
         </div>
       </section>
-        <!-- ===== Goal ===== -->
-<section class="section">
-  <div class="card">
-    <h2>My Goal</h2>
-    <p>
-      My goal is to develop a strong foundation in computer science principles and practical programming skills through hands-on projects and collaborative experiences. 
-      I aim to build a portfolio that showcases my ability to solve real-world problems using clean, efficient code while adhering to best practices in software development. 
-      By continuously learning and applying new technologies, I aspire to become a well-rounded developer ready for internship opportunities and future career growth in the tech industry.
-    </p>
-  </div>
-</section>
-      
+
+      <!-- ===== About ===== -->
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-head">
+            <h2>About</h2>
+          </div>
+
+          <div class="card">
+            <h2>My Goal</h2>
+            <p>
+              My goal is to develop a strong foundation in computer science principles and practical programming skills through hands-on projects and collaborative experiences. 
+              I aim to build a portfolio that showcases my ability to solve real-world problems using clean, efficient code while adhering to best practices in software development. 
+              By continuously learning and applying new technologies, I aspire to become a well-rounded developer ready for internship opportunities and future career growth in the tech industry.
+            </p>
+          </div>
 
           <div class="two-col">
             <div class="card">
               <h3>Who I am</h3>
-              <!-- TODO (students): Replace with your own paragraph -->
               <p>
                 I am a computer science student with a strong interest in software development and practical problem-solving. 
                 I enjoy building projects that apply programming concepts to real-world use cases while keeping code clean and organized. 
@@ -106,16 +600,15 @@
                 My goal is to grow as a developer and build an internship-ready portfolio that reflects both my skills and work ethic.
               </p>
 
-              <p>
+              <p style="margin-top: 16px;">
                 In my free time, I try to learn new programming languages. Additionally, I value staying organized and to learn from challenges, and 
                 to continuously improve both my technical skills and professional skills.
               </p>
             </div>
 
             <div class="card">
-              <h3>What I’m looking for</h3>
+              <h3>What I'm looking for</h3>
               <ul class="bullets">
-                <!-- TODO (students): Edit to match your goals -->
                 <li>Internship / research opportunities</li>
                 <li>Hands-on projects that build real skills</li>
                 <li>Team-based development and code reviews</li>
@@ -136,59 +629,40 @@
           <div class="section-head">
             <h2>Projects</h2>
             <p class="muted">
-              Include 3 projects. Each should have a goal, what you built, and the tools used.
+              Highlighting my recent work in web development and software engineering
             </p>
           </div>
 
           <div class="projects-grid">
             <!-- Project Card 1 -->
             <article class="project card">
-              <h3>Project 1: Car Rental Console App</h3>
+              <h3>Fast & Frugal Carpool</h3>
               <p class="muted">
-                Menu-based app that stores inventory and rental status using lists and dictionaries.
+                Web application that helps users share rides, calculate costs, and reduce their carbon footprint with address-based route planning.
               </p>
               <div class="tags">
                 <span class="tag">Python</span>
-                <span class="tag">Data Structures</span>
-                <span class="tag">Input Validation</span>
+                <span class="tag">Flask</span>
+                <span class="tag">HTML/CSS</span>
               </div>
               <div class="project-actions">
-                <a class="btn small" href="#" target="_blank" rel="noreferrer">Code</a>
-                <a class="btn small ghost" href="#" target="_blank" rel="noreferrer">Demo/Docs</a>
+                <a class="btn small ghost" href="https://github.com/DaveE30/Carpool-Project" target="_blank" rel="noreferrer">Demo</a>
               </div>
             </article>
 
             <!-- Project Card 2 -->
             <article class="project card">
-              <h3>Project 2: API Data Dashboard</h3>
+              <h3>Movie Project</h3>
               <p class="muted">
-                Fetches real-time data from an API and displays a summary report.
+                Interactive movie search application that helps users discover and explore films with detailed information and ratings.
               </p>
               <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Requests</span>
-                <span class="tag">JSON</span>
-              </div>
-              <div class="project-actions">
-                <a class="btn small" href="#" target="_blank" rel="noreferrer">Code</a>
-                <a class="btn small ghost" href="#" target="_blank" rel="noreferrer">Demo/Docs</a>
-              </div>
-            </article>
-
-            <!-- Project Card 3 -->
-            <article class="project card">
-              <h3>Project 3: Personal Website Remix</h3>
-              <p class="muted">
-                Customized HTML/CSS template with Git workflow (branch, merge) and clean commits.
-              </p>
-              <div class="tags">
+                <span class="tag">React</span>
                 <span class="tag">HTML</span>
                 <span class="tag">CSS</span>
-                <span class="tag">Git</span>
               </div>
               <div class="project-actions">
-                <a class="btn small" href="#" target="_blank" rel="noreferrer">Code</a>
-                <a class="btn small ghost" href="#" target="_blank" rel="noreferrer">Live Site</a>
+                <a class="btn small ghost" href="https://react-w6.vercel.app/" target="_blank" rel="noreferrer">Live Site</a>
               </div>
             </article>
           </div>
@@ -200,36 +674,36 @@
         <div class="container">
           <div class="section-head">
             <h2>Skills</h2>
-            <p class="muted">List the tools you can actually use.</p>
+            <p class="muted">Technologies and tools I work with</p>
           </div>
 
           <div class="card">
             <div class="skills-grid">
-              <!-- TODO (students): Edit this list -->
               <div>
                 <h3>Languages</h3>
                 <ul class="pill-list">
                   <li>Python</li>
                   <li>C++</li>
-                  <li></li>
+                  <li>HTML/CSS</li>
                 </ul>
               </div>
 
               <div>
-                <h3>Tools</h3>
+                <h3>Tools & Frameworks</h3>
                 <ul class="pill-list">
                   <li>Git</li>
                   <li>GitHub</li>
                   <li>VS Code</li>
+                  <li>Flask</li>
                 </ul>
               </div>
 
               <div>
                 <h3>Workflow</h3>
                 <ul class="pill-list">
-                  <li>Branches & merges</li>
-                  <li>Testing basics</li>
-                  <li>AI-assisted coding (Copilot)</li>
+                  <li>Branches & Merges</li>
+                  <li>Testing Basics</li>
+                  <li>AI-Assisted Coding</li>
                 </ul>
               </div>
             </div>
@@ -242,57 +716,42 @@
         <div class="container">
           <div class="section-head">
             <h2>Contact</h2>
-            <p class="muted">Keep it simple. Make it easy to reach you.</p>
+            <p class="muted">Let's connect and collaborate</p>
           </div>
 
           <div class="one-col">
             <div class="card">
               <h3>Get in touch</h3>
               <p>
-                Email is best. If you’re reviewing my work, feel free to reach out with
-                feedback or opportunities. It helps alot.
+                Email is best. If you're reviewing my work, feel free to reach out with
+                feedback or opportunities. It helps a lot.
               </p>
 
-              <!-- TODO (students): Replace email -->
               <p class="contact-line">
-                <strong>Email:</strong> <a href="Email:">salmanfadal12@gmail.com</a>
+                <strong>Email:</strong> <a href="mailto:salmanfadal12@gmail.com">salmanfadal12@gmail.com</a>
               </p>
 
               <p class="contact-line">
                 <strong>GitHub:</strong>
-                <a href="https://github.com/" target="_blank" rel="noreferrer">github.com/ShotoSal</a>
+                <a href="https://github.com/ShotoSal" target="_blank" rel="noreferrer">github.com/ShotoSal</a>
               </p>
 
               <p class="contact-line">
                 <strong>LinkedIn:</strong>
-                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">linkedin.com/in/Salman Fadal</a>
+                <a href="https://www.linkedin.com/in/salman-fadal-88308522b/" target="_blank" rel="noreferrer">linkedin.com/in/salman-fadal-88308522b</a>
               </p>
             </div>
-
-            
           </div>
         </div>
       </section>
     </main>
 
-    <section class="hex-section">
-      <div class="card">
-        <img src="/HEX.png" alt="Hexagonal Image" class="card-img">
-        <h3>Hexagonal Design</h3>
-        <p>
-          This section showcases a hexagonal image design. Hexagons are often used in modern UI/UX designs to create visually appealing layouts.
-        </p>
-      </div>
-    </section>
-
     <!-- ===== Footer ===== -->
     <footer class="site-footer">
       <div class="container footer-row">
-        <p class="muted">© <span id="year"></span> YOUR NAME. All rights reserved.</p>
+        <p class="muted">© 2026 Salman Fadal. All rights reserved.</p>
         <a class="muted" href="#top">Back to top ↑</a>
       </div>
     </footer>
-
-
   </body>
 </html>
